@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import TopicSelector from './components/TopicSelector/TopicSelector';
-import Quiz from './components/Quiz/Quiz';
+import Quiz from './components/Quizz/Quiz';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
