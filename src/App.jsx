@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import TopicSelector from './components/TopicSelector/TopicSelector';
+import Quiz from './components/Quiz/Quiz';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -11,7 +12,7 @@ function App() {
         <TopicSelector onSelectCategory={setSelectedCategory} />
       ) : (
         // иначе — показываем ID выбранной темы
-        <p>You selected category ID: {selectedCategory}</p>
+        <Quiz categoryId={selectedCategory} />
       )}
     </div>
   );
