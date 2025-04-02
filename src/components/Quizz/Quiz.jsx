@@ -21,10 +21,18 @@ export default function Quiz({ category }) {
   }, [category]);
 
   const handleAnswerClick = (answer) => {
-    setSelectedAnswer(answer);
     const correct = answer === questions[currentIndex].correctAnswer;
+
+    setSelectedAnswer(answer);
     setIsCorrect(correct);
     if (correct) setScore((prev) => prev + 1);
+
+    // Save user answer to question
+    setQuestions((prev) => {
+      const updated = [...prev];
+      updated[currentIndex].userAnswer = answer;
+      return updated;
+    });
   };
 
   const handleNext = () => {
@@ -45,7 +53,6 @@ export default function Quiz({ category }) {
     setIsCorrect(null);
     setScore(0);
     setIsFinished(false);
-    // перезапрашиваем вопросы
     getQuestions(5, category).then((data) => {
       setQuestions(data);
       setIsLoading(false);
@@ -60,6 +67,21 @@ export default function Quiz({ category }) {
       <div className={styles.wrapper}>
         <h2>Quiz finished 🎉</h2>
         <p>Your score: {score} / {questions.length}</p>
+
+        <ul className={styles.reviewList}>
+          {questions.map((q, index) => (
+            <li key={index} className={styles.reviewItem}>
+              <p dangerouslySetInnerHTML={{ __html: `${index + 1}. ${q.question}` }} />
+              <p>
+                <strong>Your answer:</strong>{' '}
+                {q.userAnswer ?? 'No answer'}{' '}
+                {q.userAnswer === q.correctAnswer ? '✅' : '❌'}
+              </p>
+              <p><strong>Correct answer:</strong> {q.correctAnswer}</p>
+            </li>
+          ))}
+        </ul>
+
         <button onClick={handleRestart} className={styles.restartBtn}>
           Try again
         </button>
