@@ -1,19 +1,8 @@
-export const getCategories = async () => {
-  const res = await fetch('https://opentdb.com/api_category.php');
+// Get questions from The Trivia API
+export const getQuestions = async (limit = 10, category = 'history') => {
+  const url = `https://the-trivia-api.com/api/questions?limit=${limit}&categories=${category.toLowerCase()}`;
 
-  // Преобразуем полученный ответ в обычный JS-объект
+  const res = await fetch(url);
   const data = await res.json();
-
-  // Возвращаем массив категорий из полученных данных
-  return data.trivia_categories;
-};
-
-
-// Загружает вопросы по выбранной категории (и сложности)
-export const getQuestions = async (categoryId, amount = 10, difficulty = 'medium') => {
-  const url = `https://opentdb.com/api.php?amount=${amount}&category=${categoryId}&difficulty=${difficulty}&type=multiple`;
-  const res = await fetch(url); // Отправляем запрос
-  const data = await res.json(); // Преобразуем ответ в объект
-  return data.results; // Возвращаем только массив вопросов
-
+  return data;
 };

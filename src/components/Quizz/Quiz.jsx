@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react';
 import styles from './Quiz.module.css';
 import { getQuestions } from '../../services/quizApi';
 
-export default function Quiz({ categoryId }) {
+export default function Quiz({ category }) {
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const data = await getQuestions(categoryId);
+      const data = await getQuestions(10, category);
       setQuestions(data);
       setIsLoading(false);
     };
     fetchQuestions();
-  }, [categoryId]);
+  }, [category]);
 
   if (isLoading) return <p>Loading questions...</p>;
   if (!questions || questions.length === 0) return <p>No questions found.</p>;
@@ -21,7 +21,7 @@ export default function Quiz({ categoryId }) {
   return (
     <div className={styles.wrapper}>
       <h2>First Question:</h2>
-      <p dangerouslySetInnerHTML={{ __html: questions[0].question }} />
+      <p>{questions[0].question}</p>
     </div>
   );
 }

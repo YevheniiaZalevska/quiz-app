@@ -1,32 +1,24 @@
-import { useEffect, useState } from 'react';
 import styles from './TopicSelector.module.css';
-import { getCategories } from '../../services/quizApi';
 
+const categories = [
+  'history',
+  'science',
+  'music',
+  'geography',
+  'film_and_tv',
+  'sport_and_leisure'
+];
 
 export default function TopicSelector({ onSelectCategory }) {
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getCategories();
-      setCategories(data);
-    };
-    fetchData();
-  }, []);
-
   return (
     <div className={styles.wrapper}>
       <h2>Select a topic</h2>
 
-      <select
-        onChange={(e) => onSelectCategory(e.target.value)}
-        defaultValue=""
-      >
+      <select onChange={(e) => onSelectCategory(e.target.value)} defaultValue="">
         <option value="" disabled>Select a category</option>
-
-        {categories.map((cat) => (
-          <option key={cat.id} value={cat.id}>
-            {cat.name}
+        {categories.map((name) => (
+          <option key={name} value={name}>
+            {name.replace(/_/g, ' ')}
           </option>
         ))}
       </select>
