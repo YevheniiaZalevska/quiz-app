@@ -1,0 +1,57 @@
+.answerList {
+    list-style: none;
+    padding: 0;
+}
+
+.answerItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    transition: background-color 0.2s;
+}
+
+.circle {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #555;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.selected .circle {
+    background-color: #555;
+}
+
+.reviewList {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.reviewItem {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+.nextBtn,
+.restartBtn {
+    margin-top: 16px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #222;
+    color: white;
+    cursor: pointer;
+}
+
+.nextBtn:hover,
+.restartBtn:hover {
+    background-color: #444;
+}

@@ -27,7 +27,6 @@ export default function Quiz({ category }) {
     setIsCorrect(correct);
     if (correct) setScore((prev) => prev + 1);
 
-    // Save user answer to question
     setQuestions((prev) => {
       const updated = [...prev];
       updated[currentIndex].userAnswer = answer;
@@ -105,17 +104,16 @@ export default function Quiz({ category }) {
               selectedAnswer === answer ? styles.selected : ''
             }`}
           >
+            <span className={styles.circle}></span>
             {answer}
           </li>
         ))}
       </ul>
 
       {selectedAnswer && (
-        <>
-          <button onClick={handleNext} className={styles.nextBtn}>
-            {currentIndex === questions.length - 1 ? 'Finish' : 'Next'}
-          </button>
-        </>
+        <button onClick={handleNext} className={styles.nextBtn}>
+          {currentIndex === questions.length - 1 ? 'Finish' : 'Next'}
+        </button>
       )}
     </div>
   );
