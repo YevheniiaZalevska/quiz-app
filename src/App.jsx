@@ -12,7 +12,7 @@ function App() {
         <TopicSelector onSelectCategory={setSelectedCategory} />
       ) : (
         // иначе — показываем ID выбранной темы
-        <Quiz categoryId={selectedCategory} />
+        <Quiz category={selectedCategory} />
       )}
     </div>
   );
