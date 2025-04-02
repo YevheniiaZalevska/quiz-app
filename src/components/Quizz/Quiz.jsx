@@ -5,12 +5,13 @@ import { getQuestions } from '../../services/quizApi';
 export default function Quiz({ category }) {
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const data = await getQuestions(1, category);
+      const data = await getQuestions(5, category); // загружаем 5 сразу
       setQuestions(data);
       setIsLoading(false);
     };
@@ -20,7 +21,7 @@ export default function Quiz({ category }) {
   if (isLoading) return <p>Loading questions...</p>;
   if (!questions.length) return <p>No questions found.</p>;
 
-  const question = questions[0];
+  const question = questions[currentIndex];
   const allAnswers = [...question.incorrectAnswers, question.correctAnswer]
     .sort(() => Math.random() - 0.5);
 
@@ -28,6 +29,14 @@ export default function Quiz({ category }) {
     setSelectedAnswer(answer);
     setIsCorrect(answer === question.correctAnswer);
   };
+
+  const handleNext = () => {
+    setSelectedAnswer(null);
+    setIsCorrect(null);
+    setCurrentIndex((prev) => prev + 1);
+  };
+
+  const isLastQuestion = currentIndex === questions.length - 1;
 
   return (
     <div className={styles.wrapper}>
@@ -51,9 +60,16 @@ export default function Quiz({ category }) {
       </ul>
 
       {selectedAnswer && (
-        <p className={styles.result}>
-          {isCorrect ? 'Correct ✅' : 'Wrong ❌'}
-        </p>
+        <>
+          <p className={styles.result}>
+            {isCorrect ? 'Correct ✅' : 'Wrong ❌'}
+          </p>
+          {!isLastQuestion ? (
+            <button onClick={handleNext} className={styles.nextBtn}>Next</button>
+          ) : (
+            <p className={styles.result}>Quiz finished 🎉</p>
+          )}
+        </>
       )}
     </div>
   );
