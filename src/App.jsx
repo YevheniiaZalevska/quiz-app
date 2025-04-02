@@ -5,6 +5,10 @@ import Quiz from './components/Quizz/Quiz';
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
+  const handleBackToTopics = () => {
+    setSelectedCategory(null);
+  };
+
   return (
     <div>
       {/* если тема ещё не выбрана — показываем селектор */}

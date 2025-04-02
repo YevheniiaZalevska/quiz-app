@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import styles from './Quiz.module.css';
 import { getQuestions } from '../../services/quizApi';
 
-export default function Quiz({ category }) {
+export default function Quiz({ category, onBack }) {
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -83,6 +83,10 @@ export default function Quiz({ category }) {
 
         <button onClick={handleRestart} className={styles.restartBtn}>
           Try again
+        </button>
+
+        <button onClick={onBack} className={styles.backBtn}>
+          Choose new topic
         </button>
       </div>
     );
