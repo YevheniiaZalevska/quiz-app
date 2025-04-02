@@ -1,13 +1,14 @@
 import styles from './TopicSelector.module.css';
 
 const categories = [
+  'music',
   'history',
   'science',
-  'music',
   'geography',
   'film_and_tv',
   'sport_and_leisure'
 ];
+
 
 export default function TopicSelector({ onSelectCategory }) {
   return (
