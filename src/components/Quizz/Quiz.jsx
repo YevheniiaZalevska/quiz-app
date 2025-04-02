@@ -102,11 +102,7 @@ export default function Quiz({ category }) {
             key={answer}
             onClick={() => handleAnswerClick(answer)}
             className={`${styles.answerItem} ${
-              selectedAnswer === answer
-                ? answer === question.correctAnswer
-                  ? styles.correct
-                  : styles.incorrect
-                : ''
+              selectedAnswer === answer ? styles.selected : ''
             }`}
           >
             {answer}
@@ -116,9 +112,6 @@ export default function Quiz({ category }) {
 
       {selectedAnswer && (
         <>
-          <p className={styles.result}>
-            {isCorrect ? 'Correct ✅' : 'Wrong ❌'}
-          </p>
           <button onClick={handleNext} className={styles.nextBtn}>
             {currentIndex === questions.length - 1 ? 'Finish' : 'Next'}
           </button>
