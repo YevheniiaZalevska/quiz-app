@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './App.css';
 import TopicSelector from './components/TopicSelector/TopicSelector';
 import Quiz from './components/Quizz/Quiz';
 

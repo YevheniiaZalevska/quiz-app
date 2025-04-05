@@ -1,3 +1,9 @@
+.wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
 .answerList {
     list-style: none;
     padding: 0;
@@ -7,24 +13,50 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    cursor: pointer;
-    padding: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
-    margin-bottom: 8px;
+    cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .circle {
     width: 16px;
     height: 16px;
-    border: 2px solid #555;
+    border: 2px solid #333;
     border-radius: 50%;
     background-color: white;
+    flex-shrink: 0;
 }
 
+/* закрашенный кружочек при выборе */
 .selected .circle {
-    background-color: #555;
+    background-color: #333;
+}
+
+.selected {
+    background-color: #f0f0f0;
+}
+
+.nextBtn,
+.restartBtn,
+.backBtn {
+    margin-top: 16px;
+    margin-right: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #222;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.nextBtn:hover,
+.restartBtn:hover,
+.backBtn:hover {
+    background-color: #444;
 }
 
 .reviewList {
@@ -34,37 +66,8 @@
 }
 
 .reviewItem {
-    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
+    padding: 10px;
     margin-bottom: 12px;
-}
-
-.nextBtn,
-.restartBtn {
-    margin-top: 16px;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 6px;
-    background-color: #222;
-    color: white;
-    cursor: pointer;
-}
-
-.nextBtn:hover,
-.restartBtn:hover {
-    background-color: #444;
-}
-
-.backBtn {
-    margin-top: 12px;
-    padding: 8px 16px;
-    border: 1px solid #888;
-    border-radius: 6px;
-    background-color: #f5f5f5;
-    cursor: pointer;
-}
-
-.backBtn:hover {
-    background-color: #ddd;
 }
