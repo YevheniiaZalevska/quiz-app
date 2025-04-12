@@ -98,6 +98,9 @@ export default function Quiz({ category, onBack }) {
 
   return (
     <div className={styles.wrapper}>
+      <p className={styles.progress}>
+        Question {currentIndex + 1} / {questions.length}
+      </p>
       <h2 dangerouslySetInnerHTML={{ __html: question.question }} />
       <ul className={styles.answerList}>
         {allAnswers.map((answer) => (
